@@ -8,18 +8,17 @@ map<int, vector<int>> atoms_of_molecule_ID;
 double CR;
 
 // Monomor
-double MW_monomor;
-map<int, int> Num_atom_types_in_monomor;
-int Num_atoms_in_monomor;
-int Num_monomor;
+double MW_monomor;  // モノマーの分子量
+map<int, int> Num_atom_types_in_monomor;  // モノマーの中にどの原子が何個含まれているか
+int Num_atoms_in_monomor; // モノマーの中の原子数
+int Num_monomor;  // 初めのモノマーの数
 
 // Polymer
-int Num_polymer;
-map<int, int> Num_atoms_of_molecule_ID;
-map<int, double> MW_of_molecule_ID;
-map<int, int> PD_of_molecule_ID;
-map<int, int> Num_PD;
-int Num_ring_polymer;
+int Num_polymer;  // 分子数
+map<int, int> Num_atoms_of_molecule_ID; // どの分子が何個あるか
+map<int, int> PD_of_molecule_ID;  // 各分子の重合度
+map<int, int> Num_PD; // 各重合度の分子が何個あるか
+int Num_ring_polymer; // 環状分子の数
 
 int lower(const int& a, const int& b)
 {
@@ -94,7 +93,6 @@ void get_polymer(const Data& Data)
     if (!Data.Atoms.at(i+1).have_bond) continue;
     int ID = Data.Atoms.at(i+1).molecule_ID;
     ++Num_atoms_of_molecule_ID[ID];
-    MW_of_molecule_ID[ID] += Data.Atoms.at(i+1).mass;
   }
   for (int i = 0; i < Num_polymer; ++i)
   {
