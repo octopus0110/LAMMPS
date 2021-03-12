@@ -18,6 +18,8 @@ Atom::Atom()
 
   // Velocity
   vx = 0.0; vy = 0.0; vz = 0.0; lx = 0.0; ly = 0.0; lz = 0.0; wx = 0.0; wy = 0.0; wz = 0.0; ervel = 0.0;
+
+  have_bond = false;
 }
 
 void Atom::write_Atom(const string& ATOM_STYLE, ofstream& ofs)
@@ -560,6 +562,7 @@ void Data::get_Atoms(const string& line, const int& start)
       Atoms[stoi(atom_ID)].nx = stoi(nx);
       Atoms[stoi(atom_ID)].ny = stoi(ny);
       Atoms[stoi(atom_ID)].nz = stoi(nz);
+      Atoms[stoi(atom_ID)].mass = Masses.at(Atoms[stoi(atom_ID)].atom_type).mass;
     }
     else if (atom_style == "full")
     {
@@ -574,6 +577,7 @@ void Data::get_Atoms(const string& line, const int& start)
       Atoms[stoi(atom_ID)].nx = stoi(nx);
       Atoms[stoi(atom_ID)].ny = stoi(ny);
       Atoms[stoi(atom_ID)].nz = stoi(nz);
+      Atoms[stoi(atom_ID)].mass = Masses.at(Atoms[stoi(atom_ID)].atom_type).mass;
     }
     else
     {
@@ -629,7 +633,11 @@ void Data::get_Bonds(const int& start)
       for (int j = 0; j < atom_num; ++j) iss >> atom[j];
       Bonds[stoi(bond_ID)].bond_ID = stoi(bond_ID);
       Bonds[stoi(bond_ID)].bond_type = stoi(bond_type);
-      for (int j = 0; j < atom_num; ++j) Bonds.at(stoi(bond_ID)).atom[j] = &Atoms.at(stoi(atom[j]));
+      for (int j = 0; j < atom_num; ++j)
+      {
+        Atoms.at(stoi(atom[j])).have_bond = true;
+        Bonds.at(stoi(bond_ID)).atom[j] = &Atoms.at(stoi(atom[j]));
+      }
     }
     else
     {
@@ -1646,10 +1654,16 @@ double Data::convert(const string& str)
   if (!is_included(str, "e") && !is_included(str, "E")) return stod(str);
   if (!is_included(str, ".")) return stod(str);
   string base = "", exponential = "", value;
-  int e;
-  bool flag = false;
+  int e, ct = -1;
+  bool flag = false, minus = false;
   for (char c: str)
   {
+    ++ct;
+    if (ct == 0 && c == '-')
+    {
+      minus = true;
+      continue;
+    }
     if (flag) exponential += c;
     else if (c == 'e' || c == 'E') flag = true;
     else base += c;
@@ -1657,6 +1671,7 @@ double Data::convert(const string& str)
   e = stoi(exponential);
   if (exponential[0] == '+') value = shift_right(base, e);
   else value = shift_left(base, -e);
+  if (minus) value = "-" + value;
 
   return stod(value);
 }

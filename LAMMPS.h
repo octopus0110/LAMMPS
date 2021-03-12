@@ -17,6 +17,8 @@ struct Atom
   // Velocity
   double vx, vy, vz, lx, ly, lz, wx, wy, wz, ervel;
 
+  bool have_bond;
+
   Atom();
 
   void write_Atom(const string&, ofstream&);
