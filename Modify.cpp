@@ -4,8 +4,8 @@
 
 #define DEBUG false
 
-map<int, vector<int>> atoms_of_molecule_ID;
-double CR;
+map<int, vector<int>> atoms_of_molecule_ID; // 各分子にどの原子が含まれているか
+double CR;  // Conversion Ratio
 
 // Monomor
 double MW_monomor;  // モノマーの分子量

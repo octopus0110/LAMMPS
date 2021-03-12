@@ -1567,6 +1567,7 @@ void Data::Remove_Atom_Type(const vector<int>& ATOM_TYPE)
       Impropers.at(i+1).atom[j] = &Atoms.at(Impropers.at(i+1).atom[j]->atom_ID);
     }
   }
+  check_bonds();
 }
 
 // Others
@@ -1674,4 +1675,19 @@ double Data::convert(const string& str)
   if (minus) value = "-" + value;
 
   return stod(value);
+}
+
+void Data::check_bonds()
+{
+  for (int i = 0; i < atoms; ++i)
+  {
+    Atoms.at(i+1).have_bond = false;
+  }
+  for (int i = 0; i < bonds; ++i)
+  {
+    for (int j = 0; j < 2; ++j)
+    {
+      Atoms.at(Bonds.at(i+1).atom[j]->atom_ID).have_bond = true;
+    }
+  }
 }

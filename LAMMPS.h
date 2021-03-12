@@ -256,6 +256,7 @@ struct Data
   string shift_right(string, const int&);
   string shift_left(string, const int&);
   double convert(const string&);
+  void check_bonds();
 };
 
 // #endif
