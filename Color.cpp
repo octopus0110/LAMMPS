@@ -33,8 +33,9 @@ void Color(Data& Data)
 int main(int argc, char** argv)
 {
   Data Data;
-  if (argc == 2) Data.Read(argv[1]);
-  else Data.Read();
+  if (argc == 1) Data.Read();
+  if (argc >= 2) Data.Read(argv[1]);
+  if (argc == 3) Num_atoms_in_monomor = stoi(argv[2]);
   Color(Data);
   Data.Remove_Molecule_ID({0});
   Data.Write();
