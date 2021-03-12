@@ -862,17 +862,17 @@ void Data::write_header(ofstream& ofs)
   if (DEBUG) cout << "--" << __FUNCTION__ << " Called" << endl;
   ofs << line_header << endl << endl;
   ofs << atoms << " atoms" << endl;
-  ofs << atom_types << " atom_types" << endl;
+  ofs << atom_types << " atom types" << endl;
   if (atom_style == "full")
   {
     ofs << bonds << " bonds" << endl;
-    ofs << bond_types << " bond_types" << endl;
+    ofs << bond_types << " bond types" << endl;
     ofs << angles << " angles" << endl;
-    ofs << angle_types << " angle_types" << endl;
+    ofs << angle_types << " angle types" << endl;
     ofs << dihedrals << " dihedrals" << endl;
-    ofs << dihedral_types << " dihedral_types" << endl;
+    ofs << dihedral_types << " dihedral types" << endl;
     ofs << impropers << " impropers" << endl;
-    ofs << improper_types << " improper_types" << endl;
+    ofs << improper_types << " improper types" << endl;
   }
   else if (atom_style != "atomic")
   {
@@ -1040,17 +1040,17 @@ void Data::output_header()
   cout << "-------------------------------------------------------------------------------------------------" << endl;
   cout << line_header << endl << endl;
   cout << atoms << " atoms" << endl;
-  cout << atom_types << " atom_types" << endl;
+  cout << atom_types << " atom types" << endl;
   if (atom_style == "full")
   {
     cout << bonds << " bonds" << endl;
-    cout << bond_types << " bond_types" << endl;
+    cout << bond_types << " bond types" << endl;
     cout << angles << " angles" << endl;
-    cout << angle_types << " angle_types" << endl;
+    cout << angle_types << " angle types" << endl;
     cout << dihedrals << " dihedrals" << endl;
-    cout << dihedral_types << " dihedral_types" << endl;
+    cout << dihedral_types << " dihedral types" << endl;
     cout << impropers << " impropers" << endl;
-    cout << improper_types << " improper_types" << endl;
+    cout << improper_types << " improper types" << endl;
   }
   else if (atom_style != "atomic")
   {

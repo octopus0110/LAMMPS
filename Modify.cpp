@@ -15,7 +15,7 @@ int Num_monomor;  // 初めのモノマーの数
 
 // Polymer
 int Num_polymer;  // 分子数
-map<int, int> Num_atoms_of_molecule_ID; // どの分子が何個あるか
+map<int, int> Num_atoms_of_molecule_ID; // 各分子に含まれている原子数
 map<int, int> PD_of_molecule_ID;  // 各分子の重合度
 map<int, int> Num_PD; // 各重合度の分子が何個あるか
 int Num_ring_polymer; // 環状分子の数
