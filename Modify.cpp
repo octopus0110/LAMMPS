@@ -1,4 +1,4 @@
-#include "/mnt/c/Ubuntu/home/usr/lammps/header/LAMMPS.h"
+#include "/mnt/c/Ubuntu/home/kaito/lammps/header/LAMMPS.h"
 #include <iostream>
 #include <queue>
 
@@ -34,6 +34,7 @@ int higher(const int& a, const int& b)
 
 void get_atoms_of_molecule_ID(const Data& Data)
 {
+  if (DEBUG) cout << "--" << __FUNCTION__ << " Called" << endl;
   for (int i = 0; i < Data.atoms; ++i)
   {
     atoms_of_molecule_ID[Data.Atoms.at(i+1).molecule_ID].emplace_back(Data.Atoms.at(i+1).atom_ID);

@@ -1,4 +1,4 @@
-#include "/mnt/c/Ubuntu/home/usr/lammps/header/LAMMPS.h"
+#include "/mnt/c/Ubuntu/home/kaito/lammps/header/LAMMPS.h"
 #include <iostream>
 
 #define DEBUG false
@@ -35,7 +35,7 @@ int main(int argc, char** argv)
   Data Data;
   if (argc == 1) Data.Read();
   if (argc >= 2) Data.Read(argv[1]);
-  if (argc == 3) Num_atoms_in_monomor = stoi(argv[2]);
+  if (argc >= 3) Num_atoms_in_monomor = stoi(argv[2]);
   Color(Data);
   Data.Remove_Molecule_ID({0});
   Data.Write();

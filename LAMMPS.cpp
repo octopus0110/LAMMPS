@@ -1,4 +1,4 @@
-#include "/mnt/c/Ubuntu/home/usr/lammps/header/LAMMPS.h"
+#include "/mnt/c/Ubuntu/home/kaito/lammps/header/LAMMPS.h"
 #include <iostream>
 #include <sstream>
 #include <iomanip>
@@ -426,6 +426,7 @@ void Data::get_Pair_Coeffs(const string& line, const int& start)
     if (c == '#') ++flag;
     else if (flag == 1) ++flag;
     else if (flag == 2) pair_coeff_style += c;
+    if (pair_coeff_style == "lj/cut/coul/long") break;
   }
   for (int i = start+2; i < start+2+atom_types; ++i)
   {
@@ -547,6 +548,7 @@ void Data::get_Atoms(const string& line, const int& start)
     if (c == '#') ++flag;
     else if (flag == 1) ++flag;
     else if (flag == 2) atom_style += c;
+    if (atom_style == "atomic" || atom_style == "full") break;
   }
   for (int i = start+2; i < start+2+atoms; ++i)
   {

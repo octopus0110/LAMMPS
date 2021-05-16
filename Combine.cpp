@@ -1,4 +1,4 @@
-#include "/mnt/c/Ubuntu/home/usr/lammps/header/LAMMPS.h"
+#include "/mnt/c/Ubuntu/home/kaito/lammps/header/LAMMPS.h"
 #include <iostream>
 
 #define DEBUG false
