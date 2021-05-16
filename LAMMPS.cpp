@@ -801,6 +801,7 @@ void Data::read_data()
 {
   if (DEBUG) cout << "--" << __FUNCTION__ << " Called" << endl;
   int line_number = 0;
+  bool improper_coeffs_flag = true;
   for (string line: data)
   {
     if (is_included(line, " atoms")) get_atoms(line);
@@ -821,7 +822,11 @@ void Data::read_data()
     else if (is_included(line, "Bond Coeffs")) get_Bond_Coeffs(line, line_number);
     else if (is_included(line, "Angle Coeffs")) get_Angle_Coeffs(line, line_number);
     else if (is_included(line, "Dihedral Coeffs")) get_Dihedral_Coeffs(line, line_number);
-    else if (is_included(line, "Improper Coeffs")) get_Improper_Coeffs(line, line_number);
+    else if (is_included(line, "Improper Coeffs") && improper_coeffs_flag)
+    {
+      improper_coeffs_flag = false;
+      get_Improper_Coeffs(line, line_number);
+    }
     else if (is_included(line, "Atoms")) get_Atoms(line, line_number);
     else if (is_included(line, "Velocities")) get_Velocities(line_number);
     else if (is_included(line, "Bonds")) get_Bonds(line_number);

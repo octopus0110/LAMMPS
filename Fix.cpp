@@ -2,6 +2,8 @@
 #include <iostream>
 #include <unordered_map>
 
+#define DEBUG false
+
 template<class MAP, class VALUE> static bool contains_key(MAP m, VALUE v){ return m.find(v) != m.end();}
 
 template<class T>
@@ -47,6 +49,7 @@ struct UnionFind
 
 void Fix(Data& Data)
 {
+  if (DEBUG) cout << "--" << __FUNCTION__ << " Called" << endl;
   int molecule_ID = 0;
   unordered_map<int, int> tomolecule_ID;
   UnionFind<int> UF(Data.atoms);
@@ -59,6 +62,7 @@ void Fix(Data& Data)
   }
   for (int i = 0; i < Data.atoms; ++i)
   {
+    if (Data.Atoms.at(i+1).molecule_ID <= 0) continue;
     int par = UF.find(i);
     if (par < 0) par = i;
     if (!contains_key(tomolecule_ID, par))

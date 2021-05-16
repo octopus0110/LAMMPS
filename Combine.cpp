@@ -498,6 +498,6 @@ Pair_Coeffs[{"Si", "lj/cut/coul/long"}] = "0.31 3.80414";
     D2.Read();
   }
   New = Combine(D1, D2);
-  New.Write();
+  New.Write("Combined.data");
   return 0;
 }
